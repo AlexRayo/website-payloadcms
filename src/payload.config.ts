@@ -21,6 +21,13 @@ import { getServerSideURL } from './utilities/getURL'
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 
+// al comienzo de payload.config.ts (temporal, para debug)
+console.log('---- PAYLOAD BOOT DEBUG ----');
+console.log('BLOB_READ_WRITE_TOKEN exists:', !!process.env.BLOB_READ_WRITE_TOKEN);
+console.log('DATABASE_URI:', !!process.env.DATABASE_URI);
+console.log('NODE_ENV:', process.env.NODE_ENV);
+
+
 export default buildConfig({
   admin: {
     components: {
