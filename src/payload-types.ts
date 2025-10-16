@@ -103,10 +103,12 @@ export interface Config {
   globals: {
     header: Header;
     footer: Footer;
+    home: Home;
   };
   globalsSelect: {
     header: HeaderSelect<false> | HeaderSelect<true>;
     footer: FooterSelect<false> | FooterSelect<true>;
+    home: HomeSelect<false> | HomeSelect<true>;
   };
   locale: null;
   user: User & {
@@ -1615,6 +1617,30 @@ export interface Footer {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "home".
+ */
+export interface Home {
+  id: number;
+  layout?:
+    | {
+        heading?: string | null;
+        subheading?: string | null;
+        background?: (number | null) | Media;
+        /**
+         * Ej: bg-teal-600 text-white
+         */
+        classes?: string | null;
+        variant?: ('dark' | 'light') | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'hero';
+      }[]
+    | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "header_select".
  */
 export interface HeaderSelect<T extends boolean = true> {
@@ -1654,6 +1680,30 @@ export interface FooterSelect<T extends boolean = true> {
               label?: T;
             };
         id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "home_select".
+ */
+export interface HomeSelect<T extends boolean = true> {
+  layout?:
+    | T
+    | {
+        hero?:
+          | T
+          | {
+              heading?: T;
+              subheading?: T;
+              background?: T;
+              classes?: T;
+              variant?: T;
+              id?: T;
+              blockName?: T;
+            };
       };
   updatedAt?: T;
   createdAt?: T;
